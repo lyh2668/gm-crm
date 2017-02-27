@@ -89,7 +89,7 @@
   }
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   .visit-create {
     position: relative;
     width: 100%;
