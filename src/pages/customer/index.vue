@@ -7,11 +7,11 @@
         <gm-button icon="add"></gm-button>
       </router-link>
     </gm-header>
-    <gm-screen-bar class="screen-bar">
+<!--     <gm-screen-bar class="screen-bar">
       <gm-button icon="search" @click="search">搜索</gm-button>
       <gm-button class="drop triangle-down">筛选</gm-button>
       <gm-button class="drop triangle-down">最新创建</gm-button>
-    </gm-screen-bar>
+    </gm-screen-bar> -->
     <div class="search-wrapper" v-show="searchShow">
       <search class="search" placeholder="搜索客户名/联系人名/电话" :results="list" @on-change="showResult" v-model="value"></search>
       <div class="search-hook" @click="searchHidden"></div>
@@ -29,7 +29,7 @@
 <script type="text/ecmascript-6">
 import gmHeader from 'components/header'
 import gmButton from 'components/button'
-import gmScreenBar from 'components/screenbar'
+import gmScreenBar from 'components/screenBar'
 import { Scroller, Search } from 'vux'
 export default {
   components: {
