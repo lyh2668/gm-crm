@@ -1,0 +1,157 @@
+<template lang="html">
+  <div class="business">
+    <gm-header class="business-header">
+      <gm-button icon="back" @click="back" slot="left">返回</gm-button>
+      <div class="title">商机</div>
+      <router-link to="/business/create" slot="right">
+        <gm-button icon="add"></gm-button>
+      </router-link>
+    </gm-header>
+    <div class="business-content">
+      <router-link to="" class="business-check">
+        <span>我可以查看的商机</span>
+        <i class="icon-arrow-right"></i>
+      </router-link>
+      <gm-screen-bar class="business-subtitle">
+        <gm-button class="drop triangle-down">成交时间</gm-button>
+        <gm-button class="drop triangle-down">销售阶段</gm-button>
+        <gm-button class="drop triangle-down">最近创建</gm-button>
+      </gm-screen-bar>
+      <scroller lock-x height="-50">
+        <div class="business-list">
+          <router-link to="/business/detail" class="business-item border-1px" v-for="data in businessData">
+            <h2>{{data.title}}</h2>
+            <p class="business-company">{{data.company}}</p>
+            <p class="business-price">{{data.money}}</p>
+            <label class="business-profit">{{data.profit}}</label>
+          </router-link>
+        </div>
+      </scroller>
+      <router-link class="statistics" to="business/statistics">
+        <label class="text">统计</label>
+      </router-link>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+
+import gmHeader from 'components/header'
+import gmButton from 'components/button'
+import gmScreenBar from 'components/screenBar'
+import { Scroller } from 'vux'
+
+export default {
+  name: 'business',
+  components: {
+    gmHeader,
+    gmButton,
+    gmScreenBar,
+    Scroller
+  },
+  data () {
+    return {
+      businessData: []
+    }
+  },
+  methods: {
+    back () {
+      this.$router.go(-1)
+    },
+    // 通过store获取数据
+    getStoreData () {
+      console.log(this.$store)
+      this.businessData = this.$store.state.business.contract
+      console.log('this.$store.contract:', this.$store.state.business.contract)
+    }
+  },
+  created () {
+    this.getStoreData()
+  }
+}
+</script>
+
+<style lang="scss">
+@import "../../common/scss/mixin.scss";
+
+.business-content {
+  .business-check {
+    display: block;
+    padding: 0 10px;
+    height: 50px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    line-height: 50px;
+    text-decoration: none;
+    color: #666;
+    .icon-arrow-right {
+      position: absolute;
+      right: 10px;
+      line-height: 50px;
+      font-size: 22px;
+    }
+  }
+  .business-subtitle {
+    .drop {
+      @include triangle-down(#777);
+    }
+  }
+  .business-list {
+    .business-item {
+      // border-bottom: 1px solid #eee;
+      display: block;
+      text-decoration: none;
+      padding: 10px;
+      position: relative;
+      @include border-1px(#eee);
+      .business-profit {
+        position: absolute;
+        bottom: 16px;
+        right: 10px;
+        color: #f00;
+      }
+      h2 {
+        color: #000;
+      }
+      p {
+        color: #999;
+        font-size: 13px;
+        margin-top: 5px;
+      }
+      .business-company:before {
+        content: '';
+        display:inline-block;
+        background: url(../../assets/company.png) no-repeat;
+        background-size: 100% 100%;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      .business-price:before {
+        content: '';
+        display:inline-block;
+        background: url(../../assets/money.png) no-repeat;
+        background-size: 100% 100%;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+    }
+  }
+  .statistics {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #0af;
+    color: #fff
+  }
+}
+</style>

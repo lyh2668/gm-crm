@@ -1,0 +1,149 @@
+<template>
+  <div class="sign-out-detail">
+    <gm-header class="business-header">
+      <gm-button icon="back" @click="back" slot="left">返回</gm-button>
+      <div class="title">拜访签退</div>
+      <gm-button @click="complete" slot="right">完成</gm-button>
+    </gm-header>
+    <div class="list-wrapper">
+      <div class='lasting'>拜访了{{ time }}</div>
+      <textarea class="input" ref="textarea" placeholder="输入拜访总结"></textarea>
+      <div class='button-wrapper'>
+        <div class='delete' @click="deleteVisit">删除拜访</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import gmHeader from 'components/header'
+  import gmButton from 'components/button'
+  import { formatSeconds } from 'common/js/timeUtils'
+  export default {
+    components: {
+      gmHeader,
+      gmButton
+    },
+    data () {
+      return {
+        time: ''
+      }
+    },
+    created () {
+      var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+      arr.forEach((visiting) => {
+        if (visiting.id === this.$route.params.id) {
+          this.time = formatSeconds((Date.parse(new Date()) - visiting.time) / 1000)
+        }
+      })
+      for (var i = 0; i < arr.length; ++i) {
+        if (arr[i].id === this.$route.params.id) {
+          arr[i].duration = (Date.parse(new Date()) - arr[i].time) / 1000
+        }
+      }
+      window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+    },
+    methods: {
+      back () {
+        this.$router.go(-1)
+      },
+      complete () {
+        var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+        arr.forEach((visiting) => {
+          if (visiting.id === this.$route.params.id) {
+            visiting.text = this.$refs.textarea.value
+            visiting.type = 0
+          }
+        })
+        window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+        this.$vux.loading.show({
+          text: 'signing'
+        })
+        setTimeout(() => {
+          this.$vux.loading.hide()
+        }, 900)
+        setTimeout(() => {
+          window.history.back()
+        }, 1000)
+      },
+      change (text) {
+        var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+        arr.forEach((visiting) => {
+          if (visiting.id === this.$route.params.id) {
+            visiting.text = text
+            visiting.type = 0
+          }
+        })
+        window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+      },
+      deleteVisit () {
+        if (confirm('确定删除么?')) {
+          var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+          for (var i = 0; i < arr.length; ++i) {
+            if (arr[i].id === this.$route.params.id) {
+              arr.splice(i, 1)
+            }
+          }
+          window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+          window.history.back()
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="scss">
+  .sign-out-detail {
+    width: 100%;
+    height: 100vh;
+    background: rgba(7, 17, 27, 0.1);
+    .titlebar-wrapper {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 20;
+    }
+    .list-wrapper {
+      position: absolute;
+      width: 100%;
+      top: 48px;
+      left: 0;
+      overflow: auto;
+      .lasting {
+        text-align: center;
+        line-height: 16px;
+        font-size: 16px;
+        padding: 10px 0;
+        font-size: 14px;
+        color: grey;
+      }
+      .input {
+        flex: 1;
+        display: block;
+        resize: none;
+        width: calc(100% - 20px);
+        min-height: 200px;
+        border: none;
+        line-height: inherit;
+        font-size: 16px;
+        outline: 0;
+        padding: 10px;
+        background: #fff;
+        font-weight: 500;
+      }
+      .button-wrapper {
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+        .delete {
+          padding: 15px 0;
+          background: #fff;
+          color: rgb(255, 130, 0);
+          text-align: center;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+</style>

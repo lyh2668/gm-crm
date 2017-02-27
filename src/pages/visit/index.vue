@@ -1,0 +1,118 @@
+<template>
+  <div class="visit">
+    <gm-header class="business-header">
+      <gm-button icon="back" @click="back" slot="left">返回</gm-button>
+      <div class="title">外勤拜访</div>
+      <router-link to="/visit/create" slot="right">
+        <gm-button icon="add"></gm-button>
+      </router-link>
+    </gm-header>
+    <scroller lock-x height="-48px" ref="scroller" :use-pulldown="true" :pulldown-config="pulldownConfig" @on-pulldown-loading="onpulldown" class="list-wrapper">
+      <div class="scroller-wrapper">
+        <div v-for="visitInfo in visitInfos">
+          <div v-if="visitInfo.type===0" class="visit-items">
+            <split text="" :less="true"></split>
+            <router-link :to="path(visitInfo.id)">
+              <visititem :visitInfo="visitInfo"></visititem>
+            </router-link>
+          </div>
+          <div class="visitings" v-if="visitInfo.type===1">
+            <visiting :visitInfo="visitInfo"></visiting>
+          </div>
+        </div>
+      </div>
+    </scroller>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+  import gmHeader from 'components/header'
+  import gmButton from 'components/button'
+  import split from 'components/split'
+  import visititem from 'components/visititem'
+  import visiting from 'components/visiting'
+  import { Scroller } from 'vux'
+  export default {
+    components: {
+      gmHeader,
+      gmButton,
+      split,
+      visititem,
+      Scroller,
+      visiting
+    },
+    created () {
+      this.$http.get('/api/visit').then((response) => {
+        this.visitInfos = response.data
+        if (JSON.parse(window.localStorage.getItem('myvisiting'))) {
+          this.visitInfos = JSON.parse(window.localStorage.getItem('myvisiting')).concat(this.visitInfos)
+        }
+        this.$nextTick(() => {
+          this.$refs.scroller.reset({
+            top: 0
+          })
+        })
+      }, (response) => {
+        console.log('未取到数据')
+      })
+    },
+    methods: {
+      back () {
+        this.$router.go(-1)
+      },
+      path (id) {
+        return '/visit/detail/' + id
+      },
+      onpulldown () {
+        this.$http.get('/api/visit').then((response) => {
+          this.visitInfos = response.data
+          if (JSON.parse(window.localStorage.getItem('myvisiting'))) {
+            this.visitInfos = JSON.parse(window.localStorage.getItem('myvisiting')).concat(this.visitInfos)
+          }
+          setTimeout(() => {
+            this.$refs.scroller.donePulldown()
+          }, 1000)
+        }, (response) => {
+          console.log('未取到数据')
+        })
+      }
+    },
+    data () {
+      return {
+        visitInfos: [],
+        pulldownConfig: {
+          content: '下拉刷新',
+          height: 60,
+          autoRefresh: false,
+          downContent: '下拉刷新',
+          upContent: '松开刷新',
+          loadingContent: '加载中...',
+          clsPrefix: 'xs-plugin-pulldown-'
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="scss">
+  .visit {
+    position: relative;
+    .titlebar-wrapper {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 20;
+    }
+    .list-wrapper {
+      position: absolute;
+      width: 100%;
+      top: 48px;
+      left: 0;
+      overflow: auto;
+    }
+  }
+  a {
+    color: black;
+  }
+</style>
