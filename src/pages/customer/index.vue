@@ -29,7 +29,7 @@
 <script type="text/ecmascript-6">
 import gmHeader from 'components/header'
 import gmButton from 'components/button'
-import gmScreenBar from 'components/screenbar'
+import gmScreenBar from 'components/screenBar'
 import { Scroller, Search } from 'vux'
 export default {
   components: {
