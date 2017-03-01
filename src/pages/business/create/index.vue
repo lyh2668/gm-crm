@@ -181,7 +181,7 @@ export default {
       // 将表单提交
       var data = this.contract
       console.log('表单：', data)
-      this.$http.post('/api/contract_list', data).then((res) => {
+      this.$http.post('/api/business/create', data).then((res) => {
         this.$store.state.business.contract.push(res.data)
       })
       this.$vux.loading.show({
