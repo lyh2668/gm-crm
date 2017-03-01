@@ -70,14 +70,11 @@
           if (this.$store.state.visit.visitList.length !== 0) {
             this.visitInfos = this.$store.state.visit.visitList.concat(this.visitInfos)
           }
-          setTimeout(() => {
-            this.$refs.scroller.donePulldown()
-            this.$nextTick(() => {
-              this.$refs.scroller.reset({
-                top: 0
-              })
-            })
-          }, 1000)
+          this.$nextTick(() => {
+            setTimeout(() => {
+              this.$refs.scroller.donePulldown()
+            }, 1000)
+          })
         }, (response) => {
           console.log('未取到数据')
         })
