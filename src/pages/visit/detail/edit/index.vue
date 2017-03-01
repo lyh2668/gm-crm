@@ -27,7 +27,8 @@
         this.$router.go(-1)
       },
       complete () {
-        window.localStorage.setItem('discuss', this.$refs.textarea.value)
+        // 因为前面定义了从10开始，所以现在我们需要减去10，才是我们要的id
+        this.$store.state.visit.visitList[this.$route.params.id - 10].text = this.$refs.textarea.value
         window.history.back()
       }
     }

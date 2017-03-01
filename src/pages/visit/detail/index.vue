@@ -3,7 +3,7 @@
     <gm-header class="business-header">
       <gm-button icon="back" @click="back" slot="left">返回</gm-button>
       <div class="title">外勤拜访详情</div>
-      <router-link to="/visit/detail/edit" slot="right">
+      <router-link :to="path(visitInfo.id)" slot="right">
         <gm-button>编辑</gm-button>
       </router-link>
     </gm-header>
@@ -35,22 +35,11 @@
       Scroller
     },
     created () {
-      this.$http.get('/api/visit').then((response) => {
+      this.$http.get('/api/visit?uid=3').then((response) => {
         this.visitInfos = response.data
-        if (window.localStorage.getItem('myvisiting')) {
-          var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
-          for (var i = 0; i < arr.length; ++i) {
-            if (arr[i].id === this.$route.params.id) {
-              if (window.localStorage.getItem('discuss')) {
-                arr[i].text = window.localStorage.getItem('discuss')
-              }
-            }
-          }
-          window.localStorage.setItem('myvisiting', JSON.stringify(arr))
-          this.visitInfos = JSON.parse(window.localStorage.getItem('myvisiting')).concat(this.visitInfos)
-        }
+        this.visitInfos = this.visitInfos.concat(this.$store.state.visit.visitList)
         this.visitInfos.forEach((visitInfo) => {
-          if (visitInfo.id === this.$route.params.id) {
+          if (parseInt(visitInfo.id) === parseInt(this.$route.params.id)) {
             this.visitInfo = visitInfo
           }
         })
@@ -74,6 +63,9 @@
         setTimeout(() => {
           this.$refs.scroller.donePulldown()
         }, 1000)
+      },
+      path (id) {
+        return '/visit/detail/edit/' + id
       }
     },
     data () {
