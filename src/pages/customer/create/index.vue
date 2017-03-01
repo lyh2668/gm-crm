@@ -85,7 +85,7 @@
           // }
           // arr.push(this.customer)
           // window.localStorage.setItem('mycustomers', JSON.stringify(arr))
-          this.$http.post('/api/customer_list', this.customer).then((res) => {
+          this.$http.post('/api/customer/create', this.customer).then((res) => {
             this.$store.state.customer.customerList.push(res.data)
           })
           this.$vux.loading.show({
@@ -93,10 +93,8 @@
           })
           setTimeout(() => {
             this.$vux.loading.hide()
+            this.$router.go(-1)
           }, 900)
-          setTimeout(() => {
-            window.history.back()
-          }, 1000)
         }
       }
     },
