@@ -138,9 +138,12 @@ export default {
       this.isSelectStaff = false
     },
     addComment () {
+      window.sessionStorage.setItem('routerBackDisable', true)
+      // window.sessionStorage.setItem('backPath', this.$route.path)
       this.addCommentText = true
     },
     commentSure () {
+      window.sessionStorage.removeItem('routerBackDisable')
       this.addCommentText = false
     }
   },
