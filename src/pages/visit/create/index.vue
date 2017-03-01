@@ -67,44 +67,29 @@
         this.$router.go(-1)
       },
       sign () {
+        if (!window.localStorage.getItem('myvisiting')) {
+          window.localStorage.setItem('myvisiting', JSON.stringify([]))
+        }
+        if (!window.localStorage.getItem('id')) {
+          window.localStorage.setItem('id', JSON.stringify(8))
+        }
+        this.visiting['id'] = window.localStorage.getItem('id')
+        var id = window.localStorage.getItem('id')
+        id++
+        window.localStorage.setItem('id', JSON.stringify(id))
         this.visiting['address'] = '定位中...'
+        this.visiting['office'] = window.localStorage.getItem('visitName')
         this.visiting['time'] = Date.parse(new Date())
-        this.visiting['office'] = '拜访地点'
-        // this.$http.get('/api/visit').then((response) => {
-        //   console.log('数据的长度：', response.data.length)
-        //   this.visiting.id = response.data.length +
-        //   this.$store.state.visit.visitList.length
-        //   // 将数据post上去
-        //   this.$http.post('/api/visit_list', this.visiting).then((res) => {
-        //     var arr = []
-        //     arr.push(res.data)
-        //     this.$store.state.visit.visitList = arr.concat(this.$store.state.visit.visitList)
-        //     console.log('store数据：', this.$store.state.visit.visitList)
-        //   })
-        // })
-        // id值以前计算方式是get到数据的长度来定的，过于麻烦
-        // 现在这个id值直接定死从10开始
-        this.visiting.id = 10 + this.$store.state.visit.visitList.length
-        // 将数据post上去
-        this.$http.post('/api/visit/create', this.visiting).then((res) => {
-          var arr = []
-          arr.push(res.data)
-          this.$store.state.visit.visitList = arr.concat(this.$store.state.visit.visitList)
-          console.log('store数据：', this.$store.state.visit.visitList)
-        })
-        this.$vux.loading.show({
-          text: 'Saveing'
-        })
-        setTimeout(() => {
-          this.$vux.loading.hide()
-          this.$router.go(-1)
-        }, 900)
+        let arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+        arr.unshift(this.visiting)
+        window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+        window.history.back()
       }
     }
   }
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   .visit-create {
     position: relative;
     width: 100%;
