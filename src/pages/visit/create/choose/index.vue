@@ -36,10 +36,12 @@
       Search
     },
     created () {
-      this.$http.get('/api/customer').then((response) => {
+      this.$http.get('/api/customer?uid=3').then((response) => {
         this.customers = response.data
-        if (JSON.parse(window.localStorage.getItem('mycustomers'))) {
-          this.customers = this.customers.concat(JSON.parse(window.localStorage.getItem('mycustomers')))
+        if (this.$store.state.customer.customerList.length !== 0) {
+          for (let i = 0; i < this.$store.state.customer.customerList.length; ++i) {
+            this.customers.push(this.$store.state.customer.customerList[i])
+          }
         }
         this.$nextTick(() => {
           this.$refs.scroller.reset({

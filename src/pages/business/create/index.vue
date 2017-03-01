@@ -174,17 +174,23 @@ export default {
     },
     complete () {
       console.log(this.contract)
-      if (!this.contract.contractTitle) {
+      if (!this.contract.title) {
         alert('请填写标题')
         return
       }
       // 将表单提交
       var data = this.contract
       console.log('表单：', data)
-      // 说是改变状态只能在mutation上面改，为什么我用原生的方法也行，难道只是规范？
-      // 原来我不是严格模式的原因，这些行为并不能被调试工具跟踪到
-      this.$store.state.business.contract.push(data)
-      this.$router.go(-1)
+      this.$http.post('/api/business/create', data).then((res) => {
+        this.$store.state.business.contract.push(res.data)
+      })
+      this.$vux.loading.show({
+        text: 'Saveing'
+      })
+      setTimeout(() => {
+        this.$vux.loading.hide()
+        this.$router.go(-1)
+      }, 900)
     },
     selectCustomerName () {
       console.log('selectCustomerName click')
