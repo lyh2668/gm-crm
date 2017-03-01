@@ -86,7 +86,7 @@
         // 现在这个id值直接定死从10开始
         this.visiting.id = 10 + this.$store.state.visit.visitList.length
         // 将数据post上去
-        this.$http.post('/api/visit_list', this.visiting).then((res) => {
+        this.$http.post('/api/visit/create', this.visiting).then((res) => {
           var arr = []
           arr.push(res.data)
           this.$store.state.visit.visitList = arr.concat(this.$store.state.visit.visitList)
@@ -97,10 +97,8 @@
         })
         setTimeout(() => {
           this.$vux.loading.hide()
+          this.$router.go(-1)
         }, 900)
-        setTimeout(() => {
-          window.history.back()
-        }, 1000)
       }
     }
   }
