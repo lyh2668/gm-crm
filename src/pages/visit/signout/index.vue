@@ -68,10 +68,8 @@
         })
         setTimeout(() => {
           this.$vux.loading.hide()
+          this.$router.go(-1)
         }, 900)
-        setTimeout(() => {
-          window.history.back()
-        }, 1000)
       },
       change (text) {
         var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
