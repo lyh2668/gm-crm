@@ -63,13 +63,12 @@ export default {
       this.$http.get('api/contract?uid=3').then((res) => {
         console.log('请求到的数据：', res)
         this.businessData = res.data
-        console.log()
         if (this.$store.state.business.contract.length !== 0) {
           this.businessData = this.businessData.concat(this.$store.state.business.contract)
-          this.$nextTick(() => {
-            this.$refs.scroller.reset()
-          })
         }
+        this.$nextTick(() => {
+          this.$refs.scroller.reset()
+        })
       })
     }
   },
