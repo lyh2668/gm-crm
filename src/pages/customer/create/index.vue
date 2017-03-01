@@ -73,18 +73,21 @@
         if (!this.customer.name) {
           alert('请输入客户名称')
         } else {
-          if (!window.localStorage.getItem('mycustomers')) {
-            window.localStorage.setItem('mycustomers', JSON.stringify([]))
-          }
-          let arr = JSON.parse(window.localStorage.getItem('mycustomers'))
-          for (let i = 0; i < arr.length; ++i) {
-            if (arr[i].name === this.customer.name) {
-              alert('有重名')
-              return
-            }
-          }
-          arr.push(this.customer)
-          window.localStorage.setItem('mycustomers', JSON.stringify(arr))
+          // if (!window.localStorage.getItem('mycustomers')) {
+          //   window.localStorage.setItem('mycustomers', JSON.stringify([]))
+          // }
+          // let arr = JSON.parse(window.localStorage.getItem('mycustomers'))
+          // for (let i = 0; i < arr.length; ++i) {
+          //   if (arr[i].name === this.customer.name) {
+          //     alert('有重名')
+          //     return
+          //   }
+          // }
+          // arr.push(this.customer)
+          // window.localStorage.setItem('mycustomers', JSON.stringify(arr))
+          this.$http.post('/api/customer_list', this.customer).then((res) => {
+            this.$store.state.customer.customerList.push(res.data)
+          })
           this.$vux.loading.show({
             text: 'Saveing'
           })

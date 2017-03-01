@@ -24,19 +24,73 @@ var app = express()
 var appData = require('../data.json')
 var customer = appData.customer
 var visit = appData.visit
+var contract = appData.contract
+
+var bodyParser = require('body-parser')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 var appRouter = express.Router()
 appRouter.get('/customer', function (req, res) {
+  var arr = []
+  for (let i = 0; i < customer.length; ++i) {
+    if (customer[i].uid === parseInt(req.query.uid)) {
+      arr = customer[i].data
+    }
+  }
   res.json({
     errno: 0,
-    data: customer
+    data: arr,
+    uid: req.query.uid
+  })
+})
+
+appRouter.post('/customer_list', function (req, res) {
+  res.json({
+    errno: 0,
+    data: req.body
   })
 })
 
 appRouter.get('/visit', function (req, res) {
+  var arr = []
+  for (let i = 0; i < visit.length; ++i) {
+    if (visit[i].uid === parseInt(req.query.uid)) {
+      arr = visit[i].data
+    }
+  }
   res.json({
     errno: 0,
-    data: visit
+    data: arr,
+    uid: req.query.uid
+  })
+})
+
+appRouter.post('/visit_list', function (req, res) {
+  res.json({
+    errno: 0,
+    data: req.body
+  })
+})
+
+appRouter.get('/contract', function (req, res) {
+  var arr = []
+  for (let i = 0; i < contract.length; ++i) {
+    if (contract[i].uid === parseInt(req.query.uid)) {
+      arr = contract[i].data
+    }
+  }
+  res.json({
+    errno: 0,
+    data: arr,
+    uid: req.query.uid
+  })
+})
+
+appRouter.post('/contract_list', function (req, res) {
+  res.json({
+    errno: 0,
+    data: req.body
   })
 })
 

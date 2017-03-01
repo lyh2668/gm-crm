@@ -42,11 +42,12 @@
       visiting
     },
     created () {
-      this.$http.get('/api/visit').then((response) => {
+      this.$http.get('/api/visit?uid=3').then((response) => {
         this.visitInfos = response.data
-        if (JSON.parse(window.localStorage.getItem('myvisiting'))) {
-          this.visitInfos = JSON.parse(window.localStorage.getItem('myvisiting')).concat(this.visitInfos)
+        if (this.$store.state.visit.visitList.length !== 0) {
+          this.visitInfos = this.$store.state.visit.visitList.concat(this.visitInfos)
         }
+        console.log('数据：', this.visitInfos)
         this.$nextTick(() => {
           this.$refs.scroller.reset({
             top: 0
@@ -64,13 +65,18 @@
         return '/visit/detail/' + id
       },
       onpulldown () {
-        this.$http.get('/api/visit').then((response) => {
+        this.$http.get('/api/visit?uid=3').then((response) => {
           this.visitInfos = response.data
-          if (JSON.parse(window.localStorage.getItem('myvisiting'))) {
-            this.visitInfos = JSON.parse(window.localStorage.getItem('myvisiting')).concat(this.visitInfos)
+          if (this.$store.state.visit.visitList.length !== 0) {
+            this.visitInfos = this.$store.state.visit.visitList.concat(this.visitInfos)
           }
           setTimeout(() => {
             this.$refs.scroller.donePulldown()
+            this.$nextTick(() => {
+              this.$refs.scroller.reset({
+                top: 0
+              })
+            })
           }, 1000)
         }, (response) => {
           console.log('未取到数据')

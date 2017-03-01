@@ -29,7 +29,7 @@
 <script type="text/ecmascript-6">
 import gmHeader from 'components/header'
 import gmButton from 'components/button'
-import gmScreenBar from 'components/screenbar'
+import gmScreenBar from 'components/screenBar'
 import { Scroller, Search } from 'vux'
 export default {
   components: {
@@ -40,16 +40,16 @@ export default {
     Search
   },
   created () {
-    this.$http.get('/api/customer').then((response) => {
+    this.$http.get('/api/customer?uid=4').then((response) => {
       this.customers = response.data
-      if (JSON.parse(window.localStorage.getItem('mycustomers'))) {
-        this.customers = this.customers.concat(JSON.parse(window.localStorage.getItem('mycustomers')))
-      }
-      this.$nextTick(() => {
-        this.$refs.scroller.reset({
-          top: 0
+      if (this.$store.state.customer.customerList.length !== 0) {
+        this.customers = this.customers.concat(this.$store.state.customer.customerList)
+        this.$nextTick(() => {
+          this.$refs.scroller.reset({
+            top: 0
+          })
         })
-      })
+      }
     }, (response) => {
       console.log('未取到数据')
     })
