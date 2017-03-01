@@ -189,10 +189,8 @@ export default {
       })
       setTimeout(() => {
         this.$vux.loading.hide()
-      }, 900)
-      setTimeout(() => {
         this.$router.go(-1)
-      }, 1000)
+      }, 900)
     },
     selectCustomerName () {
       console.log('selectCustomerName click')
