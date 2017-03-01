@@ -46,7 +46,7 @@ let routers = new Router({
     path: '/visit/create/choose',
     component: visitcreatechoose
   }, {
-    path: '/visit/detail/edit',
+    path: '/visit/detail/edit/:id',
     component: visitdetailedit
   }, {
     path: '/visit/signout/:id',
