@@ -27,7 +27,12 @@
         this.$router.go(-1)
       },
       complete () {
-        window.localStorage.setItem('discuss', this.$refs.textarea.value)
+        var arr = this.$store.state.visit.visitList
+        for (let i = 0; i < arr.length; ++i) {
+          if (parseInt(arr[i].id) === parseInt(this.$route.params.id)) {
+            this.$store.state.visit.visitList[i].text = this.$refs.textarea.value
+          }
+        }
         window.history.back()
       }
     }
