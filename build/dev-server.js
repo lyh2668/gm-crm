@@ -24,7 +24,7 @@ var app = express()
 var appData = require('../data.json')
 var customer = appData.customer
 var visit = appData.visit
-var contract = appData.contract
+var business = appData.business
 
 var bodyParser = require('body-parser')
 app.use(bodyParser.json())
@@ -75,9 +75,9 @@ appRouter.post('/visit/create', function (req, res) {
 
 appRouter.get('/business', function (req, res) {
   var arr = []
-  for (let i = 0; i < contract.length; ++i) {
-    if (contract[i].uid === parseInt(req.query.uid)) {
-      arr = contract[i].data
+  for (let i = 0; i < business.length; ++i) {
+    if (business[i].uid === parseInt(req.query.uid)) {
+      arr = business[i].data
     }
   }
   res.json({
