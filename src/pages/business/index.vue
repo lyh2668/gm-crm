@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 
 import gmHeader from 'components/header'
 import gmButton from 'components/button'
