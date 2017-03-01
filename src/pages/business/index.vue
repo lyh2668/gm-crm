@@ -60,7 +60,7 @@ export default {
     },
     // 通过store获取数据
     getStoreData () {
-      this.$http.get('api/contract?uid=3').then((res) => {
+      this.$http.get('api/business?uid=3').then((res) => {
         console.log('请求到的数据：', res)
         this.businessData = res.data
         if (this.$store.state.business.contract.length !== 0) {
