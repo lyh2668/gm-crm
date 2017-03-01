@@ -44,12 +44,12 @@ export default {
       this.customers = response.data
       if (this.$store.state.customer.customerList.length !== 0) {
         this.customers = this.customers.concat(this.$store.state.customer.customerList)
-        this.$nextTick(() => {
-          this.$refs.scroller.reset({
-            top: 0
-          })
-        })
       }
+      this.$nextTick(() => {
+        this.$refs.scroller.reset({
+          top: 0
+        })
+      })
     }, (response) => {
       console.log('未取到数据')
     })
