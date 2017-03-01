@@ -45,7 +45,7 @@ appRouter.get('/customer', function (req, res) {
   })
 })
 
-appRouter.post('/customer_list', function (req, res) {
+appRouter.post('/customer/create', function (req, res) {
   res.json({
     errno: 0,
     data: req.body
@@ -66,14 +66,14 @@ appRouter.get('/visit', function (req, res) {
   })
 })
 
-appRouter.post('/visit_list', function (req, res) {
+appRouter.post('/visit/create', function (req, res) {
   res.json({
     errno: 0,
     data: req.body
   })
 })
 
-appRouter.get('/contract', function (req, res) {
+appRouter.get('/business', function (req, res) {
   var arr = []
   for (let i = 0; i < contract.length; ++i) {
     if (contract[i].uid === parseInt(req.query.uid)) {
@@ -87,7 +87,7 @@ appRouter.get('/contract', function (req, res) {
   })
 })
 
-appRouter.post('/contract_list', function (req, res) {
+appRouter.post('/business/create', function (req, res) {
   res.json({
     errno: 0,
     data: req.body
