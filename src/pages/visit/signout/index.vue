@@ -30,41 +30,46 @@
       }
     },
     created () {
-      var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+      // var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+      var arr = this.$store.state.visit.visitList
+      console.log('arr: ', arr)
       arr.forEach((visiting) => {
-        if (visiting.id === this.$route.params.id) {
+        // 时间类型都没有转换
+        if (visiting.id === parseInt(this.$route.params.id)) {
           this.time = formatSeconds((Date.parse(new Date()) - visiting.time) / 1000)
         }
       })
       for (var i = 0; i < arr.length; ++i) {
-        if (arr[i].id === this.$route.params.id) {
+        if (arr[i].id === parseInt(this.$route.params.id)) {
           arr[i].duration = (Date.parse(new Date()) - arr[i].time) / 1000
         }
       }
-      window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+      console.log('arr: ', arr)
+      // window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+      this.$store.state.visit.visitList = arr
     },
     methods: {
       back () {
         this.$router.go(-1)
       },
       complete () {
-        var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+        // var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+        var arr = this.$store.state.visit.visitList
         arr.forEach((visiting) => {
-          if (visiting.id === this.$route.params.id) {
+          if (visiting.id === parseInt(this.$route.params.id)) {
             visiting.text = this.$refs.textarea.value
             visiting.type = 0
           }
         })
-        window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+        // window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+        this.$store.state.visit.visitList = arr
         this.$vux.loading.show({
           text: 'signing'
         })
         setTimeout(() => {
           this.$vux.loading.hide()
+          this.$router.go(-1)
         }, 900)
-        setTimeout(() => {
-          window.history.back()
-        }, 1000)
       },
       change (text) {
         var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
@@ -78,13 +83,15 @@
       },
       deleteVisit () {
         if (confirm('确定删除么?')) {
-          var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+          // var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
+          var arr = this.$store.state.visit.visitList
           for (var i = 0; i < arr.length; ++i) {
-            if (arr[i].id === this.$route.params.id) {
+            if (arr[i].id === parseInt(this.$route.params.id)) {
               arr.splice(i, 1)
             }
           }
-          window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+          // window.localStorage.setItem('myvisiting', JSON.stringify(arr))
+          this.$store.state.visit.visitList = arr
           window.history.back()
         }
       }

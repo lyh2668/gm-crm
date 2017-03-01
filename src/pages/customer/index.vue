@@ -40,10 +40,10 @@ export default {
     Search
   },
   created () {
-    this.$http.get('/api/customer').then((response) => {
+    this.$http.get('/api/customer?uid=4').then((response) => {
       this.customers = response.data
-      if (JSON.parse(window.localStorage.getItem('mycustomers'))) {
-        this.customers = this.customers.concat(JSON.parse(window.localStorage.getItem('mycustomers')))
+      if (this.$store.state.customer.customerList.length !== 0) {
+        this.customers = this.customers.concat(this.$store.state.customer.customerList)
       }
       this.$nextTick(() => {
         this.$refs.scroller.reset({

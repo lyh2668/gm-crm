@@ -17,7 +17,7 @@
         <gm-button class="drop triangle-down">销售阶段</gm-button>
         <gm-button class="drop triangle-down">最近创建</gm-button>
       </gm-screen-bar>
-      <scroller lock-x height="-50">
+      <scroller lock-x height="-134" ref="scroller">
         <div class="business-list">
           <router-link to="/business/detail" class="business-item border-1px" v-for="data in businessData">
             <h2>{{data.title}}</h2>
@@ -60,9 +60,16 @@ export default {
     },
     // 通过store获取数据
     getStoreData () {
-      console.log(this.$store)
-      this.businessData = this.$store.state.business.contract
-      console.log('this.$store.contract:', this.$store.state.business.contract)
+      this.$http.get('api/business?uid=3').then((res) => {
+        console.log('请求到的数据：', res)
+        this.businessData = res.data
+        if (this.$store.state.business.contract.length !== 0) {
+          this.businessData = this.businessData.concat(this.$store.state.business.contract)
+        }
+        this.$nextTick(() => {
+          this.$refs.scroller.reset()
+        })
+      })
     }
   },
   created () {

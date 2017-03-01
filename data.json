@@ -1,152 +1,371 @@
 {
   "customer": [
-    {
-      "name": "一竖",
-      "address": "海洋科学城",
-      "customerStatus": "1",
-      "customerType": "1",
-      "followUp": [
-        {
-          "name": "user",
-          "sex": "male",
-          "job": "高级CTO",
-          "tel": "17764581195"
-        }
-      ],
-      "contacts": [
-        {
-          "name": "我",
-          "tel": 13456789234,
-          "landline": 8374237,
-          "job": "CEO",
-          "email": "",
-          "sex": "male",
-          "remarks": ""
-        }
-      ]
+    { 
+      "uid": 3,
+      "data": [
+      {
+        "name": "一竖3",
+        "address": "海洋科学城",
+        "customerStatus": "1",
+        "customerType": "1",
+        "followUp": [
+          {
+            "name": "user",
+            "sex": "male",
+            "job": "高级CTO",
+            "tel": "17764581195"
+          }
+        ],
+        "contacts": [
+          {
+            "name": "我",
+            "tel": 13456789234,
+            "landline": 8374237,
+            "job": "CEO",
+            "email": "",
+            "sex": "male",
+            "remarks": ""
+          }
+        ]
+      },
+      {
+        "name": "一横3",
+        "address": "地底科学城",
+        "customerStatus": "2",
+        "customerType": "2",
+        "followUp": [
+          {
+            "name": "admin",
+            "sex": "female",
+            "job": "高级CCO",
+            "tel": "18805819766"
+          }
+        ],
+        "contacts": [
+          {
+            "name": "他",
+            "tel": 13345672345,
+            "landline": 8333456,
+            "job": "CTO",
+            "email": "",
+            "sex": "male",
+            "remarks": ""
+          }
+        ]
+      }]
     },
-    {
-      "name": "一横",
-      "address": "地底科学城",
-      "customerStatus": "2",
-      "customerType": "2",
-      "followUp": [
-        {
-          "name": "admin",
-          "sex": "female",
-          "job": "高级CCO",
-          "tel": "18805819766"
-        }
-      ],
-      "contacts": [
-        {
-          "name": "他",
-          "tel": 13345672345,
-          "landline": 8333456,
-          "job": "CTO",
-          "email": "",
-          "sex": "male",
-          "remarks": ""
-        }
-      ]
+    { 
+      "uid": 4,
+      "data": [
+      {
+        "name": "一竖4",
+        "address": "海洋科学城",
+        "customerStatus": "1",
+        "customerType": "1",
+        "followUp": [
+          {
+            "name": "user",
+            "sex": "male",
+            "job": "高级CTO",
+            "tel": "17764581195"
+          }
+        ],
+        "contacts": [
+          {
+            "name": "我",
+            "tel": 13456789234,
+            "landline": 8374237,
+            "job": "CEO",
+            "email": "",
+            "sex": "male",
+            "remarks": ""
+          }
+        ]
+      },
+      {
+        "name": "一横4",
+        "address": "地底科学城",
+        "customerStatus": "2",
+        "customerType": "2",
+        "followUp": [
+          {
+            "name": "admin",
+            "sex": "female",
+            "job": "高级CCO",
+            "tel": "18805819766"
+          }
+        ],
+        "contacts": [
+          {
+            "name": "他",
+            "tel": 13345672345,
+            "landline": 8333456,
+            "job": "CTO",
+            "email": "",
+            "sex": "male",
+            "remarks": ""
+          }
+        ]
+      }]
     }
   ],
   "visit": [
-    {
-      "id": "0",
-      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
-      "name": "大娃",
-      "time": 1487820548000,
-      "address": "这里",
-      "text": "爷爷被抓走啦",
-      "show": "true",
-      "office": "蛇精洞",
-      "duration": 4536,
-      "type": 0
+    { 
+      "uid": 3,
+      "data": [
+      {
+        "id": "0",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "大娃3",
+        "time": 1487820548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 4536,
+        "type": 0
+      },
+      {
+        "id": "1",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "二娃3",
+        "time": 1487821548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 5432,
+        "type": 0
+      },
+      {
+        "id": "2",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "三娃3",
+        "time": 1487822548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 2456,
+        "type": 0
+      },
+      {
+        "id": "3",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "四娃3",
+        "time": 1487823548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 7432,
+        "type": 0
+      },
+      {
+        "id": "4",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "五娃3",
+        "time": 1487824548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 2667,
+        "type": 0
+      },
+      {
+        "id": "5",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "六娃3",
+        "time": 1487825548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 5463,
+        "type": 0
+      },
+      {
+        "id": "6",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "七娃3",
+        "time": 1487826548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 2356,
+        "type": 0
+      },
+      {
+        "id": "7",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "金刚葫芦娃3",
+        "time": 1487827548000,
+        "address": "那里",
+        "text": "爷爷救回来啦",
+        "show": "true",
+        "office": "山间小屋",
+        "duration": 7890,
+        "type": 0
+      }]
     },
-    {
-      "id": "1",
-      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
-      "name": "二娃",
-      "time": 1487821548000,
-      "address": "这里",
-      "text": "爷爷被抓走啦",
-      "show": "true",
-      "office": "蛇精洞",
-      "duration": 5432,
-      "type": 0
-    },
-    {
-      "id": "2",
-      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
-      "name": "三娃",
-      "time": 1487822548000,
-      "address": "这里",
-      "text": "爷爷被抓走啦",
-      "show": "true",
-      "office": "蛇精洞",
-      "duration": 2456,
-      "type": 0
-    },
-    {
-      "id": "3",
-      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
-      "name": "四娃",
-      "time": 1487823548000,
-      "address": "这里",
-      "text": "爷爷被抓走啦",
-      "show": "true",
-      "office": "蛇精洞",
-      "duration": 7432,
-      "type": 0
-    },
-    {
-      "id": "4",
-      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
-      "name": "五娃",
-      "time": 1487824548000,
-      "address": "这里",
-      "text": "爷爷被抓走啦",
-      "show": "true",
-      "office": "蛇精洞",
-      "duration": 2667,
-      "type": 0
-    },
-    {
-      "id": "5",
-      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
-      "name": "六娃",
-      "time": 1487825548000,
-      "address": "这里",
-      "text": "爷爷被抓走啦",
-      "show": "true",
-      "office": "蛇精洞",
-      "duration": 5463,
-      "type": 0
-    },
-    {
-      "id": "6",
-      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
-      "name": "七娃",
-      "time": 1487826548000,
-      "address": "这里",
-      "text": "爷爷被抓走啦",
-      "show": "true",
-      "office": "蛇精洞",
-      "duration": 2356,
-      "type": 0
-    },
-    {
-      "id": "7",
-      "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
-      "name": "金刚葫芦娃",
-      "time": 1487827548000,
-      "address": "那里",
-      "text": "爷爷救回来啦",
-      "show": "true",
-      "office": "山间小屋",
-      "duration": 7890,
-      "type": 0
+    { 
+      "uid": 4,
+      "data": [
+      {
+        "id": "0",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "大娃4",
+        "time": 1487820548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 4536,
+        "type": 0
+      },
+      {
+        "id": "1",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "二娃4",
+        "time": 1487821548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 5432,
+        "type": 0
+      },
+      {
+        "id": "2",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "三娃4",
+        "time": 1487822548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 2456,
+        "type": 0
+      },
+      {
+        "id": "3",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "四娃4",
+        "time": 1487823548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 7432,
+        "type": 0
+      },
+      {
+        "id": "4",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "五娃4",
+        "time": 1487824548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 2667,
+        "type": 0
+      },
+      {
+        "id": "5",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "六娃4",
+        "time": 1487825548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 5463,
+        "type": 0
+      },
+      {
+        "id": "6",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "七娃4",
+        "time": 1487826548000,
+        "address": "这里",
+        "text": "爷爷被抓走啦",
+        "show": "true",
+        "office": "蛇精洞",
+        "duration": 2356,
+        "type": 0
+      },
+      {
+        "id": "7",
+        "avatar": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2870899162,3233621740&fm=23&gp=0.jpg",
+        "name": "金刚葫芦娃4",
+        "time": 1487827548000,
+        "address": "那里",
+        "text": "爷爷救回来啦",
+        "show": "true",
+        "office": "山间小屋",
+        "duration": 7890,
+        "type": 0
+      }]
+    }
+  ],
+  "business": [
+    { 
+      "uid": 3,
+      "data": [{
+        "title": "合同的名称3",
+        "company": "合同的单位",
+        "money": "价格",
+        "profit": "赢单（100%）",
+        "staff": "员工1号",
+        "updataTime": "2017年2月21日",
+        "remark": "一段备注"
+      }, {
+        "title": "与阿里的百万合作3",
+        "company": "阿里巴巴",
+        "money": "100万",
+        "profit": "初步沟通（10%）",
+        "staff": "员工1号",
+        "updataTime": "2017年2月21日",
+        "remark": "一段备注"
+      }, {
+        "title": "大数据工程3",
+        "company": "技术部门",
+        "money": "1000万",
+        "profit": "方案报价（50%）",
+        "staff": "员工1号",
+        "updataTime": "2017年2月21日",
+        "remark": "一段备注"
+      }]
+    },{
+      "uid": 4,
+      "data": [{
+        "title": "合同的名称4",
+        "company": "合同的单位",
+        "money": "价格",
+        "profit": "赢单（100%）",
+        "staff": "员工1号",
+        "updataTime": "2017年2月21日",
+        "remark": "一段备注"
+      }, {
+        "title": "与阿里的百万合作4",
+        "company": "阿里巴巴",
+        "money": "100万",
+        "profit": "初步沟通（10%）",
+        "staff": "员工1号",
+        "updataTime": "2017年2月21日",
+        "remark": "一段备注"
+      }, {
+        "title": "大数据工程4",
+        "company": "技术部门",
+        "money": "1000万",
+        "profit": "方案报价（50%）",
+        "staff": "员工1号",
+        "updataTime": "2017年2月21日",
+        "remark": "一段备注"
+      }]
     }
   ]
 }
