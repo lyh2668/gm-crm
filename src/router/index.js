@@ -4,11 +4,11 @@ import Index from 'pages/index'
 import Customer from 'pages/customer'
 import Visit from 'pages/visit'
 import Business from 'pages/business'
-import CustomerCreate from 'pages/customer/create'
+// import CustomerCreate from 'pages/customer/create'
 import CustomerDetail from 'pages/customer/detail'
 import CustomerInfo from 'pages/customer/info'
 import CustomerEdit from 'pages/customer/edit'
-import BusinessCreate from 'pages/business/create'
+// import BusinessCreate from 'pages/business/create'
 import BusinessDetail from 'pages/business/detail'
 import BusinessRecord from 'pages/business/record'
 import BusinessStatistics from 'pages/business/statistics'
@@ -20,10 +20,7 @@ import visitcreatechoose from 'pages/visit/create/choose'
 
 Vue.use(Router)
 
-console.log(Customer)
-console.log(CustomerCreate)
-
-export default new Router({
+let router = new Router({
   routes: [{
     path: '/',
     component: Index
@@ -31,16 +28,13 @@ export default new Router({
     path: '/customer',
     component: Customer
   }, {
-    path: '/customer/create',
-    component: CustomerCreate
-  }, {
-    path: '/customer/detail/:text',
+    path: '/customer/info/detail',
     component: CustomerDetail
   }, {
-    path: '/customer/info/:text',
+    path: '/customer/info',
     component: CustomerInfo
   }, {
-    path: '/customer/edit',
+    path: '/customer/info/edit',
     component: CustomerEdit
   }, {
     path: '/visit',
@@ -52,28 +46,27 @@ export default new Router({
     path: '/visit/detail/edit',
     component: visitdetailedit
   }, {
-    path: '/visit/signout/:id',
+    path: '/visit/signout',
     component: visitsignout
   }, {
     path: '/visit/create',
     component: visitcreate
   }, {
-    path: '/visit/detail/:id',
+    path: '/visit/detail',
     component: visitdetail
   }, {
     path: '/business',
     component: Business
   }, {
-    path: '/business/create',
-    component: BusinessCreate
-  }, {
     path: '/business/detail',
     component: BusinessDetail
   }, {
-    path: '/business/record',
+    path: '/business/detail/record',
     component: BusinessRecord
   }, {
     path: '/business/statistics',
     component: BusinessStatistics
   }]
 })
+
+export default router
