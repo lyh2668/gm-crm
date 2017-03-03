@@ -35,12 +35,12 @@
       console.log('arr: ', arr)
       arr.forEach((visiting) => {
         // 时间类型都没有转换
-        if (visiting.id === parseInt(this.$route.params.id)) {
+        if (visiting.id === parseInt(this.$route.query.id)) {
           this.time = formatSeconds((Date.parse(new Date()) - visiting.time) / 1000)
         }
       })
       for (var i = 0; i < arr.length; ++i) {
-        if (arr[i].id === parseInt(this.$route.params.id)) {
+        if (arr[i].id === parseInt(this.$route.query.id)) {
           arr[i].duration = (Date.parse(new Date()) - arr[i].time) / 1000
         }
       }
@@ -56,7 +56,7 @@
         // var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
         var arr = this.$store.state.visit.visitList
         arr.forEach((visiting) => {
-          if (visiting.id === parseInt(this.$route.params.id)) {
+          if (visiting.id === parseInt(this.$route.query.id)) {
             visiting.text = this.$refs.textarea.value
             visiting.type = 0
           }
@@ -74,7 +74,7 @@
       change (text) {
         var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
         arr.forEach((visiting) => {
-          if (visiting.id === this.$route.params.id) {
+          if (visiting.id === this.$route.query.id) {
             visiting.text = text
             visiting.type = 0
           }
@@ -86,7 +86,7 @@
           // var arr = JSON.parse(window.localStorage.getItem('myvisiting'))
           var arr = this.$store.state.visit.visitList
           for (var i = 0; i < arr.length; ++i) {
-            if (arr[i].id === parseInt(this.$route.params.id)) {
+            if (arr[i].id === parseInt(this.$route.query.id)) {
               arr.splice(i, 1)
             }
           }
@@ -103,20 +103,8 @@
   .sign-out-detail {
     width: 100%;
     height: 100vh;
-    background: rgba(7, 17, 27, 0.1);
-    .titlebar-wrapper {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 20;
-    }
+    background: #C1C1C1;
     .list-wrapper {
-      position: absolute;
-      width: 100%;
-      top: 48px;
-      left: 0;
-      overflow: auto;
       .lasting {
         text-align: center;
         line-height: 16px;
