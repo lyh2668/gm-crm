@@ -20,7 +20,7 @@ import visitcreatechoose from 'pages/visit/create/choose'
 
 Vue.use(Router)
 
-let router = new Router({
+let routers = new Router({
   routes: [{
     path: '/',
     component: Index
@@ -43,7 +43,7 @@ let router = new Router({
     path: '/visit/create/choose',
     component: visitcreatechoose
   }, {
-    path: '/visit/detail/edit',
+    path: '/visit/detail/edit/:id',
     component: visitdetailedit
   }, {
     path: '/visit/signout',
@@ -69,4 +69,17 @@ let router = new Router({
   }]
 })
 
-export default router
+routers.beforeEach((to, from, next) => {
+  console.log('to: ', to, '\nfrom: ', from, '\nnext: ', next)
+
+  let disable = JSON.parse(window.sessionStorage.getItem('routerBackDisable'))
+  console.log(disable)
+  if (disable && disable === true) {
+    console.log('next false.')
+    next(false)
+  } else {
+    next(true)
+  }
+})
+
+export default routers
