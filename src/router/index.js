@@ -1,22 +1,36 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from 'pages/index'
-import Customer from 'pages/customer'
-import Visit from 'pages/visit'
-import Business from 'pages/business'
-// import CustomerCreate from 'pages/customer/create'
-import CustomerDetail from 'pages/customer/detail'
-import CustomerInfo from 'pages/customer/info'
-import CustomerEdit from 'pages/customer/edit'
-// import BusinessCreate from 'pages/business/create'
-import BusinessDetail from 'pages/business/detail'
-import BusinessRecord from 'pages/business/record'
-import BusinessStatistics from 'pages/business/statistics'
-import visitdetail from 'pages/visit/detail'
-import visitcreate from 'pages/visit/create'
-import visitsignout from 'pages/visit/signout'
-import visitdetailedit from 'pages/visit/detail/edit'
-import visitcreatechoose from 'pages/visit/create/choose'
+
+const Index = resolve => require.ensure([], () =>
+  resolve(require('../pages/index')), '/')
+const Customer = resolve => require.ensure([], () =>
+  resolve(require('../pages/customer')), '/customer')
+const Visit = resolve => require.ensure([], () =>
+  resolve(require('../pages/visit')), '/visit')
+const Business = resolve => require.ensure([], () =>
+  resolve(require('../pages/business')), '/business')
+const CustomerDetail = resolve => require.ensure([], () =>
+  resolve(require('../pages/customer/detail')), '/customer/detail')
+const CustomerInfo = resolve => require.ensure([], () =>
+  resolve(require('../pages/customer/info')), '/customer/info')
+const CustomerEdit = resolve => require.ensure([], () =>
+  resolve(require('../pages/customer/edit')), '/customer/edit')
+const BusinessDetail = resolve => require.ensure([], () =>
+  resolve(require('../pages/business/detail')), '/business/detail')
+const BusinessRecord = resolve => require.ensure([], () =>
+  resolve(require('../pages/business/record')), '/businiess/record')
+const BusinessStatistics = resolve => require.ensure([], () =>
+  resolve(require('../pages/business/statistics')), '/business/statistics')
+const visitdetail = resolve => require.ensure([], () =>
+  resolve(require('../pages/visit/detail')), '/visit/detail')
+const visitcreate = resolve => require.ensure([], () =>
+  resolve(require('../pages/visit/create')), '/visit/create')
+const visitsignout = resolve => require.ensure([], () =>
+  resolve(require('../pages/visit/signout')), '/visit/signout')
+const visitdetailedit = resolve => require.ensure([], () =>
+  resolve(require('../pages/visit/detail/edit')), '/visit/detail/edit')
+const visitcreatechoose = resolve => require.ensure([], () =>
+  resolve(require('../pages/visit/create/choose')), '/visit/create/choose')
 
 Vue.use(Router)
 
