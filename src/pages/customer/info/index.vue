@@ -83,11 +83,6 @@
           return this.customer.contacts[0].name
         }
       }
-      // path () {
-      //   if (this.customer) {
-      //     return '/customer/info/detail/' + this.customer.name
-      //   }
-      // }
     },
     methods: {
       back () {
