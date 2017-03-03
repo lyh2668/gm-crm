@@ -5,7 +5,7 @@
       <div class="title">商机详情</div>
       <gm-button icon="more" @click="complete" slot="right"></gm-button>
     </gm-header>
-    <scroller lock-x height="-44" ref="scroller" class="scroller">
+    <scroller lock-x height="-81" ref="scroller" class="scroller">
       <div class="business-content">
         <div class="business-head">
           <h2>{{ businessData.title }}</h2>
@@ -32,7 +32,7 @@
         </div>
         <div class="business-record">
           <h2>跟进记录（2）</h2>
-          <router-link v-for="data in businessData.stage" to="/business/record" class="business-record-a">
+          <router-link v-for="data in businessData.stage" to="/business/detail/record" class="business-record-a">
             <div class="business-record-person">
               <img src="../../../assets/man.jpg">
               <div>
@@ -153,10 +153,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .business-detail {
+  opacity: 1;
   background-color: #eee;
-  overflow: hidden;
   .scroller {}
   .business-content {
     .business-head {

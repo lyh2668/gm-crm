@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <router-link class="visiting-right" :to="path()">
+    <router-link class="visiting-right" :to="{path:'/visit/signout',query:{id:visitInfo.id}}">
       <div class="sign-out">签退</div>
     </router-link>
   </div>
@@ -27,9 +27,6 @@
       }
     },
     methods: {
-      path () {
-        return '/visit/signout/' + this.visitInfo.id
-      },
       dateFormats (mill) {
         return dateFormat(mill)
       }

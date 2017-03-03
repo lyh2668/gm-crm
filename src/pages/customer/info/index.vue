@@ -3,37 +3,39 @@
     <gm-header>
       <gm-button icon="back" slot="left" @click="back">返回</gm-button>
       <div class="title">客户信息</div>
-      <router-link to="/customer/edit" slot="right"><gm-button>编辑</gm-button></router-link>
+      <router-link :to="{path:'/customer/info/edit',query:{name: customer.name}}" slot="right"><gm-button>编辑</gm-button></router-link>
     </gm-header>
-    <div class="wrapper">
-      <div class="header-wrapper">
-        <div class="img-blur">
-          <img :src="src">
+    <Scroller lock-x height="-48px">
+      <div class="wrapper">
+        <div class="header-wrapper">
+          <div class="img-blur">
+            <img :src="src">
+          </div>
+          <router-link :to="{path:'/customer/info/detail', query:{name: customer.name}}" class="content-wrapper">
+            <p>{{$route.query.name}}</p>
+            <p>无跟进记录</p>
+            <p>{{contacts}}</p>
+            <span class="icon-keyboard-arrow-right"></span>
+          </router-link>
         </div>
-        <router-link :to="path" class="content-wrapper">
-          <p>{{$route.params.text}}</p>
-          <p>无跟进记录</p>
-          <p>{{contacts}}</p>
-          <span class="icon-keyboard-arrow-right"></span>
-        </router-link>
+        <gm-screen-bar>
+          <gm-button>商机(0)</gm-button>
+          <gm-button>定时提醒(0)</gm-button>
+        </gm-screen-bar>
+        <split text=""></split>
+        <div>
+          <group gutter="0">
+            <selector value="无" title="跟进人" :options="['无']"></selector>
+            <selector :value="statusOptions[customer.customerStatus]||statusOptions[0]" title="客户状态" :options="['无', '小型客户', '中型客户', '大型客户']"></selector>
+            <selector :value="classifyOptions[customer.customerType]||classifyOptions[0]" title="客户分级" :options="['无', '新建的客户', '潜在客户', '成交客户', '长期客户', '流失客户']"></selector>
+          </group>
+        </div>
+        <split text=""></split>
+        <div class="followup-wrapper">
+          <p>跟进记录</p>
+        </div>
       </div>
-      <gm-screen-bar>
-        <gm-button>商机(0)</gm-button>
-        <gm-button>定时提醒(0)</gm-button>
-      </gm-screen-bar>
-      <split text=""></split>
-      <div>
-        <group gutter="0">
-          <selector value="无" title="跟进人" :options="['无']"></selector>
-          <selector :value="statusOptions[customer.customerStatus]||statusOptions[0]" title="客户状态" :options="['无', '小型客户', '中型客户', '大型客户']"></selector>
-          <selector :value="classifyOptions[customer.customerType]||classifyOptions[0]" title="客户分级" :options="['无', '新建的客户', '潜在客户', '成交客户', '长期客户', '流失客户']"></selector>
-        </group>
-      </div>
-      <split text=""></split>
-      <div class="followup-wrapper">
-        <p>跟进记录</p>
-      </div>
-    </div>
+    </Scroller>
   </div>
 </template>
 
@@ -42,7 +44,7 @@
   import gmHeader from 'components/header'
   import gmButton from 'components/button'
   import split from 'components/split'
-  import { Group, Selector } from 'vux'
+  import { Group, Selector, Scroller } from 'vux'
   var ICONLEFT = 0
   var ELLIPSIS = 2
   var LEFT = 0
@@ -53,16 +55,19 @@
       gmButton,
       split,
       Group,
-      Selector
+      Selector,
+      Scroller
     },
     created () {
-      this.$http.get('/api/customer').then((response) => {
+      // console.log(this.$route.query.text)
+      this.$http.get('/api/customer?uid=4').then((response) => {
         this.customers = response.data
         if (JSON.parse(window.localStorage.getItem('mycustomers'))) {
           this.customers = this.customers.concat(JSON.parse(window.localStorage.getItem('mycustomers')))
         }
+        // console.log(this.customers)
         this.customers.forEach((customer) => {
-          if (customer.name === this.$route.params.text) {
+          if (customer.name === this.$route.query.name) {
             this.customer = customer
           } else {
             customer = {}
@@ -76,11 +81,6 @@
       contacts () {
         if (this.customer.contacts) {
           return this.customer.contacts[0].name
-        }
-      },
-      path () {
-        if (this.customer) {
-          return '/customer/detail/' + this.customer.name
         }
       }
     },
@@ -122,20 +122,7 @@
 
 <style lang="scss">
   .customerInfo {
-    position: relative;
-    .titlebar-wrapper {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 20;
-    }
     .wrapper {
-      position: absolute;
-      width: 100%;
-      top: 44px;
-      left: 0;
-      overflow: auto;
       .header-wrapper {
         width: 100%;
         height: 100px;

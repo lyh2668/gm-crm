@@ -24,13 +24,14 @@
 <script type='text/ecmascript-6'>
   import gmHeader from 'components/header'
   import gmButton from 'components/button'
-  import { Group, Cell } from 'vux'
+  import { Group, Cell, Scroller } from 'vux'
   export default {
     components: {
       gmHeader,
       gmButton,
       Group,
-      Cell
+      Cell,
+      Scroller
     },
     computed: {
       name () {
@@ -106,23 +107,11 @@
 
 <style lang="scss">
   .visit-create {
-    position: relative;
+    // position: relative;
     width: 100%;
     height: 100vh;
     background: rgb(239, 239, 244);
-    .titlebar-wrapper {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 20;
-    }
     .content-wrapper {
-      position: absolute;
-      width: 100%;
-      top: 50px;
-      left: 0;
-      overflow: auto;
       .address {
         text-align: center;
         line-height: 16px;

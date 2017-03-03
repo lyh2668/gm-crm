@@ -8,23 +8,25 @@
       <div class="title">编辑</div>
       <gm-button @click="complete" slot="right">完成</gm-button>
     </gm-header>
-    <div class="content-wrapper">
-      <split text="客户信息"></split>
-      <group gutter="0" v-for="customerInfo in customerInfos">
-        <x-input :title="customerInfo.title" :placeholder="customerInfo.placeholder" value="一" v-if="customerInfo.label===0" :required="customerInfo.required" :class="customerInfo.required?'title':''"></x-input>
-        <selector :title="customerInfo.title" :options="customerInfo.options" value="无" v-if="customerInfo.label===1" :required="customerInfo.required" :class="customerInfo.required?'title':''"></selector>
-      </group>
-      <div class="input-wrapper" v-for="(contact,index) in contactNum">
-        <split :text="contactNums('联系人信息', index)" :flag="show" @deleted="deleted(index)"></split>
-        <group gutter="0" v-for="contactInfo in contactInfos">
-          <x-input class="contactInfo.class" :title="contactInfo.title" :placeholder="contactInfo.placeholder" value="一" v-if="contactInfo.label===0" :required="contactInfo.required"></x-input>
-          <selector :title="contactInfo.title" :options="contactInfo.options" value="无" v-if="contactInfo.label===1" :required="contactInfo.required"></selector>
+    <Scroller lock-x height="-48px">
+      <div class="content-wrapper">
+        <split text="客户信息"></split>
+        <group gutter="0" v-for="customerInfo in customerInfos">
+          <x-input :title="customerInfo.title" :placeholder="customerInfo.placeholder" value="一" v-if="customerInfo.label===0" :required="customerInfo.required" :class="customerInfo.required?'title':''"></x-input>
+          <selector :title="customerInfo.title" :options="customerInfo.options" value="无" v-if="customerInfo.label===1" :required="customerInfo.required" :class="customerInfo.required?'title':''"></selector>
         </group>
+        <div class="input-wrapper" v-for="(contact,index) in contactNum">
+          <split :text="contactNums('联系人信息', index)" :flag="show" @deleted="deleted(index)"></split>
+          <group gutter="0" v-for="contactInfo in contactInfos">
+            <x-input class="contactInfo.class" :title="contactInfo.title" :placeholder="contactInfo.placeholder" value="一" v-if="contactInfo.label===0" :required="contactInfo.required"></x-input>
+            <selector :title="contactInfo.title" :options="contactInfo.options" value="无" v-if="contactInfo.label===1" :required="contactInfo.required"></selector>
+          </group>
+        </div>
+        <div class="addContact">
+          <span class="text" @click="addContact">添加联系人+</span>
+        </div>
       </div>
-      <div class="addContact">
-        <span class="text" @click="addContact">添加联系人+</span>
-      </div>
-    </div>
+    </Scroller>
   </div>
 </template>
 
@@ -33,7 +35,7 @@
   import gmHeader from 'components/header'
   import gmButton from 'components/button'
   import split from 'components/split'
-  import { Group, Selector, XInput } from 'vux'
+  import { Group, Selector, XInput, Scroller } from 'vux'
   let CANCEL = 1
   let COMPLETE = 1
   let INDEX = 0
@@ -46,7 +48,8 @@
       split,
       Group,
       Selector,
-      XInput
+      XInput,
+      Scroller
     },
     computed: {
       // 是否显示删除
@@ -209,19 +212,7 @@
 
 <style lang="scss">
   .customer-edit {
-    position: relative;
-    .titlebar-wrapper {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 20;
-    }
     .content-wrapper {
-      position: absolute;
-      top: 49px;
-      width: 100%;
-      overflow: auto;
       .title {
         .weui_label {
           color: rgb(255, 43, 0)

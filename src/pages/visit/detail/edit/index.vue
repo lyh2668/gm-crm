@@ -44,13 +44,6 @@
     width: 100%;
     height: 100vh;
     background: rgba(7, 17, 27, 0.1);
-    .titlebar-wrapper {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 20;
-    }
     .list-wrapper {
       position: absolute;
       width: 100%;

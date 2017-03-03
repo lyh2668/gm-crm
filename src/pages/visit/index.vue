@@ -12,7 +12,7 @@
         <div v-for="visitInfo in visitInfos">
           <div v-if="visitInfo.type===0" class="visit-items">
             <split text="" :less="true"></split>
-            <router-link :to="path(visitInfo.id)">
+            <router-link :to="{path:'/visit/detail',query:{id:visitInfo.id}}">
               <visititem :visitInfo="visitInfo"></visititem>
             </router-link>
           </div>
@@ -61,9 +61,9 @@
       back () {
         this.$router.go(-1)
       },
-      path (id) {
-        return '/visit/detail/' + id
-      },
+      // path (id) {
+      //   return '/visit/detail/' + id
+      // },
       onpulldown () {
         this.$http.get('/api/visit?uid=3').then((response) => {
           this.visitInfos = response.data
@@ -99,23 +99,9 @@
 
 <style lang="scss">
   .visit {
-    position: relative;
-    .titlebar-wrapper {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 20;
+    background-color: #fff;
+    a {
+      color: black;
     }
-    .list-wrapper {
-      position: absolute;
-      width: 100%;
-      top: 48px;
-      left: 0;
-      overflow: auto;
-    }
-  }
-  a {
-    color: black;
   }
 </style>

@@ -3,9 +3,9 @@
     <gm-header class="business-header">
       <gm-button icon="back" @click="back" slot="left">返回</gm-button>
       <div class="title">选择我的客户</div>
-      <router-link to="/customer/create" slot="right">
-        <gm-button>新建客户</gm-button>
-      </router-link>
+      <!-- <router-link to="/customer/create" slot="right"> -->
+      <gm-button @click="shows" slot="right">新建客户</gm-button>
+      <!-- </router-link> -->
     </gm-header>
     <scroller lock-x height="-48px" ref="scroller" :use-pulldown="true" :pulldown-config="pulldownConfig" @on-pulldown-loading="onpulldown" class="list-wrapper">
       <div class="scroller-wrapper">
@@ -20,6 +20,9 @@
       <search class="search" placeholder="搜索客户名/联系人名/电话" :results="list" @on-change="showResult" @result-click="reClick"></search>
       <div class="search-hook" @click="searchHidden"></div>
     </div>
+    <transition name="opacity">
+      <customer-create class="create" v-show="showCreate" @complete="notShows" @back="notShows"></customer-create>
+    </transition>
   </div>
 </template>
 
@@ -27,13 +30,15 @@
   import gmHeader from 'components/header'
   import gmButton from 'components/button'
   import { Scroller, Search } from 'vux'
+  import customerCreate from 'components/customerCreate'
 
   export default {
     components: {
       gmHeader,
       gmButton,
       Scroller,
-      Search
+      Search,
+      customerCreate
     },
     created () {
       this.$http.get('/api/customer?uid=3').then((response) => {
@@ -87,10 +92,17 @@
       reClick (item) {
         window.localStorage.setItem('visitName', item.title)
         window.history.back()
+      },
+      notShows () {
+        this.showCreate = false
+      },
+      shows () {
+        this.showCreate = true
       }
     },
     data () {
       return {
+        showCreate: false,
         list: [],
         searchShow: false,
         customers: {},
@@ -109,8 +121,19 @@
 </script>
 
 <style lang="scss">
+  .opacity-enter {
+    opacity: 0;
+  }
+  .opacity-enter-active {
+    transition: all .6s linear;
+  }
+  .opacity-leave-active {
+    opacity: 0;
+    transition: all .6s linear;
+  }
   .visit-create-choose {
-    position: relative;
+    // position: relative;
+    background: #fff;
     .search-wrapper {
       position: fixed;
       z-index: 30;
@@ -123,19 +146,14 @@
         background: rgba(7, 17, 27, 0.8);
       }
     }
-    .titlebar-wrapper {
+    .create {
       position: fixed;
-      width: 100%;
       top: 0;
       left: 0;
-      z-index: 20;
+      z-index: 50;
+      width: 100%;
     }
     .list-wrapper {
-      position: absolute;
-      width: 100%;
-      top: 48px;
-      left: 0;
-      overflow: auto;
       .search-button {
         width: calc(100% - 16px);
         background: rgb(239, 239, 244);

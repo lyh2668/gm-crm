@@ -3,9 +3,7 @@
     <gm-header class="business-header">
       <gm-button icon="back" @click="back" slot="left">返回</gm-button>
       <div class="title">商机</div>
-      <router-link to="/business/create" slot="right">
-        <gm-button icon="add"></gm-button>
-      </router-link>
+      <gm-button icon="add" slot="right" @click="show"></gm-button>
     </gm-header>
     <div class="business-content">
       <router-link to="" class="business-check">
@@ -31,57 +29,86 @@
         <label class="text">统计</label>
       </router-link>
     </div>
+    <transition name="opacity">
+      <business-create class="create" v-show="showCreate" @complete="notShow" @back="notShow"></business-create>
+    </transition>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 
-import gmHeader from 'components/header'
-import gmButton from 'components/button'
-import gmScreenBar from 'components/screenBar'
-import { Scroller } from 'vux'
+  import gmHeader from 'components/header'
+  import gmButton from 'components/button'
+  import gmScreenBar from 'components/screenBar'
+  import businessCreate from 'components/businessCreate'
+  import { Scroller } from 'vux'
 
-export default {
-  name: 'business',
-  components: {
-    gmHeader,
-    gmButton,
-    gmScreenBar,
-    Scroller
-  },
-  data () {
-    return {
-      businessData: []
-    }
-  },
-  methods: {
-    back () {
-      this.$router.go(-1)
+  export default {
+    name: 'business',
+    components: {
+      gmHeader,
+      gmButton,
+      gmScreenBar,
+      Scroller,
+      businessCreate
     },
-    // 通过store获取数据
-    getStoreData () {
-      this.$http.get('api/business?uid=3').then((res) => {
-        console.log('请求到的数据：', res)
-        this.businessData = res.data
-        if (this.$store.state.business.contract.length !== 0) {
-          this.businessData = this.businessData.concat(this.$store.state.business.contract)
-        }
-        this.$nextTick(() => {
-          this.$refs.scroller.reset()
+    data () {
+      return {
+        showCreate: false,
+        businessData: []
+      }
+    },
+    methods: {
+      notShow () {
+        this.showCreate = false
+      },
+      show () {
+        this.showCreate = true
+      },
+      back () {
+        this.$router.go(-1)
+      },
+      // 通过store获取数据
+      getStoreData () {
+        this.$http.get('api/business?uid=3').then((res) => {
+          console.log('请求到的数据：', res)
+          this.businessData = res.data
+          if (this.$store.state.business.contract.length !== 0) {
+            this.businessData = this.businessData.concat(this.$store.state.business.contract)
+          }
+          this.$nextTick(() => {
+            this.$refs.scroller.reset()
+          })
         })
-      })
+      }
+    },
+    created () {
+      this.getStoreData()
     }
-  },
-  created () {
-    this.getStoreData()
   }
-}
 </script>
 
 <style lang="scss">
 @import "../../common/scss/mixin.scss";
-
+.opacity-enter {
+  opacity: 0;
+}
+.opacity-enter-active {
+  transition: all .6s linear;
+}
+.opacity-leave-active {
+  opacity: 0;
+  transition: all .6s linear;
+}
 .business-content {
+  .create {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    height: 100%;
+  }
   .business-check {
     display: block;
     padding: 0 10px;

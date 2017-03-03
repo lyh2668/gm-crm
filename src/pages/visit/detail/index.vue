@@ -3,11 +3,10 @@
     <gm-header class="business-header">
       <gm-button icon="back" @click="back" slot="left">返回</gm-button>
       <div class="title">外勤拜访详情</div>
-      <router-link :to="path(visitInfo.id)" slot="right">
+      <router-link :to="{path:'/visit/detail/edit',query:{id:$route.query.id}}" slot="right">
         <gm-button>编辑</gm-button>
       </router-link>
     </gm-header>
-
     <scroller height="-48px" lock-x ref="scroller" :use-pulldown="true" :pulldown-config="pulldownConfig" @on-pulldown-loading="onpulldown" class="list-wrapper">
       <div class="sroller-wrapper">
         <split text="" :less="true"></split>
@@ -39,7 +38,7 @@
         this.visitInfos = response.data
         this.visitInfos = this.visitInfos.concat(this.$store.state.visit.visitList)
         this.visitInfos.forEach((visitInfo) => {
-          if (parseInt(visitInfo.id) === parseInt(this.$route.params.id)) {
+          if (parseInt(visitInfo.id) === parseInt(this.$route.query.id)) {
             this.visitInfo = visitInfo
           }
         })
@@ -88,19 +87,8 @@
 
 <style lang="scss">
   .visitdetail {
-    .titlebar-wrapper {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 20;
-    }
+    background-color: #fff;
     .list-wrapper {
-      position: absolute;
-      width: 100%;
-      top: 48px;
-      left: 0;
-      overflow: auto;
       .discuss-title {
         margin-left: 15px;
         padding: 10px 0;
