@@ -10,6 +10,8 @@ import { sync } from 'vuex-router-sync'
 import store from './store'
 import router from './router'
 import { LoadingPlugin } from 'vux'
+import socket from './socket'
+Vue.use(socket)
 
 Vue.use(LoadingPlugin)
 
