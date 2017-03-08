@@ -21,6 +21,12 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+var server = require('http').createServer(app)
+var sio = require('socket.io')(server)
+sio.on('connection', (socket) => {
+  console.log('连接已建立')
+})
+
 var appData = require('../data.json')
 var customer = appData.customer
 var visit = appData.visit
@@ -143,7 +149,7 @@ devMiddleware.waitUntilValid(function () {
   console.log('> Listening at ' + uri + '\n')
 })
 
-module.exports = app.listen(port, function (err) {
+module.exports = server.listen(port, function (err) {
   if (err) {
     console.log(err)
     return

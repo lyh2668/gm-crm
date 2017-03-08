@@ -11,6 +11,8 @@ import errno from 'common/js/errno'
 export default {
   name: 'app',
   beforeCreate () {
+    var socketIo = this.$socket.connect('192.168.0.104:8080')
+    console.log(socketIo)
     this.$http.interceptors.request.use(config => {
       this.$vux.loading.show({
         text: '加载...'

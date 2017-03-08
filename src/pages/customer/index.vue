@@ -86,6 +86,7 @@
         })
       },
       search () {
+        console.log(66666)
         this.searchShow = true
       },
       searchHidden () {
