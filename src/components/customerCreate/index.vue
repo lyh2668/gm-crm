@@ -33,7 +33,7 @@
   import gmHeader from 'components/header'
   import gmButton from 'components/button'
   import split from 'components/split'
-  import { Group, Selector, XInput, Scroller } from 'vux'
+  import { Group, Selector, XInput } from 'vux'
   let CANCEL = 1
   let COMPLETE = 1
   let INDEX = 0
@@ -46,13 +46,7 @@
       split,
       Group,
       Selector,
-      XInput,
-      Scroller
-    },
-    mounted () {
-      this.$nextTick(() => {
-        this.$refs.scroller.reset({top: 0})
-      })
+      XInput
     },
     computed: {
       // 是否显示删除
