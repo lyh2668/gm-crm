@@ -72,7 +72,7 @@
 <script type="text/ecmascript-6">
 import gmHeader from 'components/header'
 import gmButton from 'components/button'
-import { Scroller, Group, Selector, XInput, Cell } from 'vux'
+import { Group, Selector, XInput, Cell } from 'vux'
 import customerList from 'components/list/customer'
 import staffList from 'components/list/staff'
 
@@ -81,7 +81,6 @@ export default {
   components: {
     gmHeader,
     gmButton,
-    Scroller,
     Group,
     Selector,
     XInput,
