@@ -48,9 +48,16 @@ export default {
   },
   watch: {
     '$route' (to, from) {
-      const toDepth = to.path.substring(0, to.path.length - 2).split('/').length
-      const fromDepth = from.path.substring(0, from.path.length - 2).split('/').length
-      this.transitionName = toDepth < fromDepth ? 'slide_back' : 'slide'
+      const toDepth = to.path.substring(0, to.path.length - 1).split('/').length
+      const fromDepth = from.path.substring(0, from.path.length - 1).split('/').length
+      if (toDepth < fromDepth) {
+        this.transitionName = 'slide_back'
+      } else {
+        this.transitionName = 'slide'
+      }
+      if (from.matched.length === 0) {
+        this.transitionName = ''
+      }
     }
   }
 }
