@@ -100,8 +100,7 @@
   opacity: 0;
   transition: all .6s linear;
 }
-.business-content {
-  .create {
+.create {
     position: fixed;
     top: 0;
     left: 0;
@@ -109,6 +108,7 @@
     width: 100%;
     height: 100%;
   }
+.business-content {
   .business-check {
     display: block;
     padding: 0 10px;

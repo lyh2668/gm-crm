@@ -76,6 +76,7 @@ export default {
 @import '../../../common/scss/mixin.scss';
 
 .analysis {
+  background-color: #fff;
   .screen-bar {
     .drop {
       @include triangle-down(#777);
